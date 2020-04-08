@@ -1,13 +1,15 @@
+import sys
+
 def ay_listesi():
     months_of_list = []
-    with open("input_dir_name/input_hw_2.csv", mode="r") as dosya:
+    with open(sys.argv[1]+"/input_hw_2.csv", mode="r") as dosya:
         for satir in dosya:
             i=0
             for sutun in satir.split(";"):
                 if(i==3):
                     ay = sutun[5]+sutun[6]
                     months_of_list.append(ay)
-                i = i + 1
+                i = i+1
     return months_of_list
 
 def my_frequency_with_dict(list):
@@ -27,7 +29,7 @@ def bubble_sort(my_list):
     n = len(my_list)
     for i in range(n-1,-1,-1):
         for j in range(0,i):
-            if not (my_list[j]<my_list[j+1]):
+            if not (my_list[j] < my_list[j+1]):
                 temp = my_list[j]
                 my_list[j] = my_list[j+1]
                 my_list[j+1] = temp
@@ -70,23 +72,16 @@ def list_of_hist(hist_m):
     return list_h
 
 
-
-
-
-
 list_m = ay_listesi()
 hist_m = my_frequency_with_dict(list_m)
 list_h = list_of_hist(hist_m)
 mean = int(ortalama(list_h))
 median = my_median(list_h)
 
-
-
-with open("output_dir_name/180401056_hw_2_output.txt",mode="w") as output:
+with open(sys.argv[2]+"/180401056_hw_2_output.txt",mode="w") as output:
     output.writelines("Median : {}".format(median)+"\n")
     output.writelines("Ortalama : {}".format(mean))
-
-
+print("işlem basarili")
 
 
 
